@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: "Архыз",
       link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -28,7 +28,7 @@ const initialCards = [
 
 //--------------------------CREATE CARD FROM ARRAY-------------------//
 
-function createCard(data, on__delete) {
+export function createCard(data, on__delete) {
   const card__template = document.querySelector("#card-template").content;
   const cardElement = card__template
     .querySelector(".places__item")
@@ -52,7 +52,7 @@ function createCard(data, on__delete) {
 }
 
 // function for delete card
-function handleDeleteCard(card) {
+export function handleDeleteCard(card) {
   return card.remove();
 }
 
@@ -62,3 +62,4 @@ function handlelikeCard(button){
   })
   
 }
+

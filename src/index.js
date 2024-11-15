@@ -1,3 +1,7 @@
+import "./pages/index.css"
+import {initialCards, createCard, handleDeleteCard } from './scripts/cards'
+import {form_fnc} from './scripts/modal'
+
 const places__list = document.querySelector(".places__list");
 
 
