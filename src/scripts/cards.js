@@ -1,7 +1,7 @@
 // --------------------------CREATE CARD FROM ARRAY-------------------//
 export function createCard(
   data,
-  { handleDeleteCard, handlelikeCard, handleImageClick }
+  {handleImageClick }
 ) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate
@@ -14,18 +14,26 @@ export function createCard(
   );
 
   const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => handlelikeCard(likeButton));
+  likeButton.addEventListener("click", () => handleLikeCard(likeButton));
 
   const imageCard = cardElement.querySelector(".card__image");
   imageCard.setAttribute("src", data.link);
   imageCard.setAttribute("alt", data.name);
   
-  const popup_type_image = document.querySelector(".popup.popup_type_image");
-  imageCard.addEventListener("click", () => handleImageClick(popup_type_image,data));
+  
+  imageCard.addEventListener("click", () => handleImageClick(data));
 
   const cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
 
   return cardElement;
+}
+
+function handleDeleteCard(card) {
+  return card.remove();
+}
+
+function handleLikeCard(button) {
+  button.classList.toggle("card__like-button_is-active");
 }
 
