@@ -7,7 +7,6 @@ export function openModal(popup) {
 
   document.addEventListener("keydown", handleEscape);
   
-  handleClosePopup(popup)
 }
 
 export function closeModal(popup) {
@@ -22,15 +21,3 @@ function handleEscape(evt) {
   }
 }
 
-function handleClosePopup (popup){
-  const closeButton = popup.querySelector(".popup__close");
-  closeButton.addEventListener("click", () => {
-    closeModal(popup);
-  });
-
-  popup.addEventListener("click", function (e) {
-    if (e.target === popup) {
-      closeModal(popup);
-    }
-  });
-}

@@ -18,9 +18,15 @@ const popupCaption = document.querySelector(".popup__caption");
 const nameCard = document.querySelector(".popup__input_type_card-name");
 const urlCard = document.querySelector(".popup__input_type_url");
 
+const popupTypeImage = document.querySelector(".popup.popup_type_image");
+
 initialCards.forEach((card) => {
   renderCard(createCard(card, { handleImageClick }));
 });
+
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach(handleClosePopup)
 
 //function for add card
 function renderCard(card) {
@@ -28,13 +34,25 @@ function renderCard(card) {
 }
 
 function handleImageClick(data) {
-  const popupTypeImage = document.querySelector(".popup.popup_type_image");
   popupImage.src = data.link;
   popupImage.alt = data.name;
   popupCaption.textContent = data.name;
   openModal(popupTypeImage);
 }
 // -------------------------CREATE CARD FROM ARRAY FINISH-------------------------------//
+
+function handleClosePopup (popup){
+  const closeButton = popup.querySelector(".popup__close");
+  closeButton.addEventListener("click", () => {
+    closeModal(popup);
+  });
+
+  popup.addEventListener("click", function (e) {
+    if (e.target === popup) {
+      closeModal(popup);
+    }
+  });
+}
 
 //-----------------------------FORMS----------------------------------//
 
