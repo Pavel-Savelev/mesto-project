@@ -21,3 +21,15 @@ function handleEscape(evt) {
   }
 }
 
+export function handleClosePopup (popup){
+  const closeButton = popup.querySelector(".popup__close");
+  closeButton.addEventListener("click", () => {
+    closeModal(popup);
+  });
+
+  popup.addEventListener("click", function (e) {
+    if (e.target === popup) {
+      closeModal(popup);
+    }
+  });
+}
