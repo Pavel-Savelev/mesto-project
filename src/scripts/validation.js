@@ -23,6 +23,7 @@ const hideInputError = (
   inputElement.classList.remove(inputErrorClass);
   elementError.classList.remove(errorClass);
   elementError.textContent = "";
+  inputElement.setCustomValidity("")
 };
 
 const isValid = (formElement, inputElement, inputErrorClass, errorClass) => {

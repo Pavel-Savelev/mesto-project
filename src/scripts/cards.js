@@ -1,5 +1,5 @@
 import {deleteCard,addLike,deleteLike} from './api.js'
-import {openModal} from './modal.js'
+import { onOpenImagePopup } from '../index.js';
 // --------------------------CREATE CARD FROM ARRAY-------------------//
 export function createCard(card) {
   const cardTemplate = document.querySelector("#card-template").content;
@@ -17,7 +17,7 @@ export function createCard(card) {
     cardDeleteButton.style.display = 'none'
   }
 
-  let likeButton = cardElement.querySelector(".card__like-button");
+  const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", () => handleLikeCard(likeButton,card._id,countLikeSelector));
 
   if (card.isliked){
@@ -28,7 +28,7 @@ export function createCard(card) {
   imageCard.setAttribute("src", card.link);
   imageCard.setAttribute("alt", card.name);
 
-  imageCard.addEventListener("click", () => handleImageClick(card.link,card.name));
+  imageCard.addEventListener("click", () => onOpenImagePopup(card.link,card.name));
 
   const countLikeSelector = cardElement.querySelector(".card__like-count");
 
@@ -63,15 +63,4 @@ function handleLikeCard(button,idCard,countLikes) {
     button.classList.add("card__like-button_is-active")
     countLikes.textContent=Number(countLikes.textContent)+1
   }
-}
-
-function handleImageClick(link,name) {
-  const popupImage = document.querySelector(".popup__image");
-  const popupCaption = document.querySelector(".popup__caption");
-  const popupTypeImage = document.querySelector(".popup.popup_type_image");
-
-  popupImage.src = link;
-  popupImage.alt = name;
-  popupCaption.textContent = name;
-  openModal(popupTypeImage);
 }
