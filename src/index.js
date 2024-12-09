@@ -82,7 +82,7 @@ const formEdit = document.forms["edit-profile"];
 inputTypeName.value = profileTitle.textContent;
 inputTypeDescription.value = profileDescription.textContent;
 
-export function onOpenImagePopup(link,name) {
+export function onOpenImagePopup(link, name) {
   popupImage.src = link;
   popupImage.alt = name;
   popupCaption.textContent = name;
@@ -94,15 +94,11 @@ function handleProfileFormSubmit(evt) {
   profileTitle.textContent = inputTypeName.value;
   profileDescription.textContent = inputTypeDescription.value;
   updateDataProfile(profileTitle.textContent, profileDescription.textContent)
-    .then((res) => {
-      if (res.ok) {
-        closeModal(popupEditDefault);
-      }
+    .then(() => {
+      closeModal(popupEditDefault);
     })
     .catch((err) => console.log(`Ошибка: ${err}`))
-
     .finally(() => {
-      // Здесь изменяем текст кнопки, если это форма.
       popupEditDefault.querySelector(
         validationConfig.submitButtonSelector
       ).textContent = "Сохранение...";
@@ -128,9 +124,6 @@ function handleCardFormSubmit(evt) {
         _id: res._id,
       });
       closeModal(popupAddDefault);
-      popupAddDefault.querySelector(
-        validationConfig.submitButtonSelector
-      ).textContent = "Сохранение...";
       placesList.prepend(card);
       cardForm.reset();
     })

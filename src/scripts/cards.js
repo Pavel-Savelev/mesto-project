@@ -10,7 +10,13 @@ export function createCard(card) {
   if (card.isDeletable) {
     const cardDeleteButton = cardElement.querySelector(".card__delete-button");
     cardDeleteButton.addEventListener("click", () =>
-      handleDeleteCard(cardElement,card._id),
+      handleDeleteCard(cardElement,card._id)
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(()=>{
+      console.log('выполнено')
+    })
     );
   }else {
     const cardDeleteButton = cardElement.querySelector(".card__delete-button");
@@ -56,11 +62,27 @@ async function handleDeleteCard(card, cardId) {
 function handleLikeCard(button,idCard,countLikes) {
   if (button.classList.contains("card__like-button_is-active")){
     deleteLike(idCard)
-    button.classList.remove("card__like-button_is-active")
-    countLikes.textContent=Number(countLikes.textContent)-1
+    .then(()=>{
+      button.classList.remove("card__like-button_is-active")
+      countLikes.textContent=Number(countLikes.textContent)-1
+    })
+    .catch(err=>{
+      console.log('Ошибка:',err)
+    })
+    .finally(()=>{
+      console.log('Выполнено')
+    })
   }else{
     addLike(idCard)
-    button.classList.add("card__like-button_is-active")
+    .then(()=>{
+      button.classList.add("card__like-button_is-active")
     countLikes.textContent=Number(countLikes.textContent)+1
+    })
+    .catch(err=>{
+      console.log("Ошибка:",err)
+    })
+    .finally(()=>{
+      console.log('Выполнено')
+    })
   }
 }
