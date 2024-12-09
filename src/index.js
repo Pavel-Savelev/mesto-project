@@ -91,10 +91,11 @@ export function onOpenImagePopup(link, name) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileTitle.textContent = inputTypeName.value;
-  profileDescription.textContent = inputTypeDescription.value;
+  
   updateDataProfile(profileTitle.textContent, profileDescription.textContent)
     .then(() => {
+      profileTitle.textContent = inputTypeName.value;
+      profileDescription.textContent = inputTypeDescription.value;
       closeModal(popupEditDefault);
     })
     .catch((err) => console.log(`Ошибка: ${err}`))
